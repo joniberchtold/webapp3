@@ -18,8 +18,8 @@
       <li class="nav-item">
         <a class="nav-link" href="login.php">Login</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <li class="nav-item">
+        <a class="nav-link" href="registrieren.php">Registieren</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
