@@ -7,12 +7,19 @@
     <title>Titel</title>
   </head>
   <body>
-  <p>Jonas</p>
-  <p>Jonas</p>
-  <p>Jonas</p>
-  <p>Jonas</p>
-  <p>Jonas</p>
   
+   <?php
+        // Hier werden die DB verlinkung und die NAvigation eingefügt
+        include "navigation.php";
+       
+
+?>
+
+  <p>Jonas</p>
+  <p>Jonas</p>
+  <p>Jonas</p>
+  <p>Jonas</p>
+  <p>Jonas</p>
 
   </body>
 </html>
