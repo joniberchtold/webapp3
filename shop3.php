@@ -7,21 +7,25 @@
     <title>Titel</title>
   </head>
   <body>
-  
-   <?php
+     <?php
+        // Hier werden die DB verlinkung und die NAvigation eingefügt
+        include "navigation.php";
        
 
 ?>
 
-  <p>Password Vergessen? Opfer!</p>
-  
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  
-  <a href="index.php">Zurück zur Startseite</a>
 
+  <p>Jonas3</p>
+  <p>Jonas3</p>
+  <p>Jonas3</p>
+  <p>Jonas3</p>
+  <p>Jonas3</p>
+  
+   <?php
+        // Hier werden die DB verlinkung und die NAvigation eingefügt
+        include "navunten.php";
+       
+
+?>
   </body>
 </html>
