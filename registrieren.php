@@ -15,54 +15,103 @@
 
 ?>
 
- <form>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Benutzername</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Passwort</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Vorname</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-    </div>
-	    <div class="form-group col-md-6">
-      <label for="inputPassword4">Nachname</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-    </div>
-	  
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputAddress"></label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div>
-  <div class="form-group">
-    <label for="inputAddress2">Adresse</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">PLZ</label>
-      <input type="text" class="form-control" id="inputCity">
-    </div>
-	<div class="form-group col-md-6">
-      <label for="inputEmail4">E-Mail</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-    </div>
-	<div class="form-group col-md-6">
-      <label for="inputEmail4">Telefonnummer</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-    </div>
-  
-   
-  </div>
+<?php
+$showFormular = true; //Variable ob das Registrierungsformular anezeigt werden soll
  
-  <button type="submit" class="btn btn-primary">Sign in</button>
+if(isset($_GET['register'])) {
+    $error = false;
+    $Benutzername = $_POST['Benutzername'];
+    $Passwort = $_POST['Passwort'];
+	$Passwort2 = $_POST['Passwort2'];
+	$Vorname = $_POST['Vorname'];
+	$Nachname = $_POST['Nachname'];
+	$Strasse = $_POST['Strasse'];
+	$Hausnummer = $_POST['Hausnummer'];
+	$PLZ = $_POST['PLZ'];
+	$Email = $_POST['Email'];
+	$Telefonnummer = $_POST['Telefonnummer'];
+ 
   
-  <a href="login.php">Haben Sie bereits ein Login? Klicken Sie hier.</a>
+    if(!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
+        echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
+        $error = true;
+    }     
+    if(strlen($Passwort) == 0) {
+        echo 'Bitte ein Passwort angeben<br>';
+        $error = true;
+    }
+    if($Passwort != $Passwort2) {
+        echo 'Die Passwörter müssen übereinstimmen<br>';
+        $error = true;
+    }
+    
+    //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
+    if(!$error) { 
+       
+        $result = $statement->execute(array('email' => $email));
+        $user = $statement->fetch();
+        
+        if($user !== false) {
+            echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
+            $error = true;
+        }    
+    }
+    
+    //Keine Fehler, wir können den Nutzer registrieren
+    if(!$error) {    
+        $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
+        
+        $statement = prepare("INSERT INTO users (email, passwort) VALUES (:email, :passwort)");
+        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash));
+        
+        if($result) {        
+            echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
+            $showFormular = false;
+        } else {
+            echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
+        }
+    } 
+}
+ 
+if($showFormular) {
+?>
+ 
+<form action="?register=1" method="post">
+Benutzername:<br>
+<input type="email" size="40" maxlength="250" name="email"><br><br>
+ 
+Dein Passwort:<br>
+<input type="password" size="40"  maxlength="250" name="passwort"><br>
+ 
+Passwort wiederholen:<br>
+<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+
+Vorname:<br>
+<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+
+Nachname:<br>
+<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+
+Strasse:<br>
+<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+
+Huasnummer:<br>
+<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+
+PLZ:<br>
+<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+
+E-Mail:<br>
+<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+
+Telefonnummer:<br>
+<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+ 
+<input type="submit" value="Abschicken">
 </form>
+ 
+<?php
+} //Ende von if($showFormular)
+?>
   </body>
 </html>
