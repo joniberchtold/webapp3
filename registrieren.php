@@ -11,6 +11,7 @@
    <?php
         // Hier werden die DB verlinkung und die NAvigation eingefügt
         include "navigation.php";
+		include "datenbank.php";
        
 
 ?>
@@ -47,8 +48,8 @@ if(isset($_GET['register'])) {
     
     //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
     if(!$error) { 
-       
-        $result = $statement->execute(array('email' => $email));
+        $statement = $pdo->prepare("SELECT * FROM benutzer WHERE Email = :Email");
+        $result = $statement->execute(array('Email' => $Email));
         $user = $statement->fetch();
         
         if($user !== false) {
@@ -59,10 +60,10 @@ if(isset($_GET['register'])) {
     
     //Keine Fehler, wir können den Nutzer registrieren
     if(!$error) {    
-        $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
+        $passwort_hash = password_hash($Passwort, PASSWORD_DEFAULT);
         
-        $statement = prepare("INSERT INTO users (email, passwort) VALUES (:email, :passwort)");
-        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash));
+        $statement = $pdo->prepare("INSERT INTO benutzer (Benutzername, Passwort, Vorname, Nachname, Strasse, Hausnummer, PLZ, Email, Telefonnummer) VALUES (:Benutzername, :Passwort, :Vorname, :Nachname, :Strasse, :Hausnummer, :PLZ, :Email, :Telefonnummer)");
+        $result = $statement->execute(array('Benutzername' => $Benutzername, 'Passwort' => $passwort_hash, 'Vorname' => $Vorname, 'Nachname' => $Nachname, 'Strasse' => $Strasse, 'Hausnummer' => $Hausnummer, 'PLZ' => $PLZ, 'Email' => $Email, 'Telefonnummer' => $Telefonnummer ));
         
         if($result) {        
             echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
@@ -78,34 +79,34 @@ if($showFormular) {
  
 <form action="?register=1" method="post">
 Benutzername:<br>
-<input type="email" size="40" maxlength="250" name="email"><br><br>
+<input size="40" maxlength="250" name="Benutzername"><br><br>
  
 Dein Passwort:<br>
-<input type="password" size="40"  maxlength="250" name="passwort"><br>
+<input type="password" size="40"  maxlength="250" name="Passwort"><br>
  
 Passwort wiederholen:<br>
-<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+<input type="password" size="40" maxlength="250" name="Passwort2"><br><br>
 
 Vorname:<br>
-<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+<input size="40" maxlength="250" name="Vorname"><br><br>
 
 Nachname:<br>
-<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+<input size="40" maxlength="250" name="Nachname"><br><br>
 
 Strasse:<br>
-<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+<input size="40" maxlength="250" name="Strasse"><br><br>
 
 Huasnummer:<br>
-<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+<input size="40" maxlength="250" name="Hausnummer"><br><br>
 
 PLZ:<br>
-<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+<input size="40" maxlength="250" name="PLZ"><br><br>
 
 E-Mail:<br>
-<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+<input  type="email" size="40" maxlength="250" name="Email"><br><br>
 
 Telefonnummer:<br>
-<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+<input size="40" maxlength="250" name="Telefonnummer"><br><br>
  
 <input type="submit" value="Abschicken">
 </form>

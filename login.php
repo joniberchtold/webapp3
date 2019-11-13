@@ -10,20 +10,46 @@
 <form>
 
    <?php
+		session_start();
         // Hier werden die DB verlinkung und die NAvigation eingefügt
         include "navigation.php";
+		include "datenbank.php";
        
+
+
+
+
+ 
+if(isset($_GET['login'])) {
+    $Email = $_POST['Email'];
+    $Passwort = $_POST['Passwort'];
+    
+    $statement = $pdo->prepare("SELECT * FROM benutzer WHERE Email = :Email");
+    $result = $statement->execute(array('Email' => $Email));
+    $user = $statement->fetch();
+        
+    //Überprüfung des Passworts
+    if ($user !== false && password_verify($Passwort, $user['Passwort'])) {
+        $_SESSION['userid'] = $user['id'];
+        die('Login erfolgreich. Weiter zu <a href="shop.php">internen Bereich</a>');
+    } else {
+        $errorMessage = "E-Mail oder Passwort war ungültig<br>";
+    }
+    
+}
+
+
 
 ?>
 
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="email" name="Email class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <input type="password" name="Passwort class="form-control" id="exampleInputPassword1" placeholder="Password">
   </div>
   <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
