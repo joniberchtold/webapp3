@@ -57,5 +57,10 @@ Dein Passwort:<br>
  
 <input type="submit" value="Abschicken">
 <a href="passwordvergessen.php">Password Vergessen</a>
+
+
+
+
+
   </body>
 </html>
