@@ -9,7 +9,7 @@
   <body>
   
    <?php
-        // Hier werden die DB verlinkung und die NAvigation eingefügt
+        // Hier werden die DB verlinkung und die Navigation eingefügt
         include "navigation.php";
 		include "datenbank.php";
        
