@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 30. Okt 2019 um 16:49
+-- Erstellungszeit: 13. Nov 2019 um 15:29
 -- Server-Version: 10.4.6-MariaDB
 -- PHP-Version: 7.3.9
 
@@ -37,6 +37,13 @@ CREATE TABLE `artikel` (
   `Bild` varchar(255) NOT NULL,
   `Beschreibung` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `artikel`
+--
+
+INSERT INTO `artikel` (`ID`, `Name`, `Artikelnummer`, `Bild`, `Beschreibung`) VALUES
+(1, 'Produkt 1', 12345645, 'bild', 'Dies ist eine Produktbeschreibung');
 
 -- --------------------------------------------------------
 
@@ -102,7 +109,7 @@ ALTER TABLE `passwort`
 -- AUTO_INCREMENT für Tabelle `artikel`
 --
 ALTER TABLE `artikel`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `benutzer`
