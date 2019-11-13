@@ -1,3 +1,4 @@
+ <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="de">
   <head>
@@ -21,10 +22,17 @@
             <li class="nav-item">
         <a class="nav-link" href="registrieren.php">Registieren</a>
       </li>
-	  </li>
+	 
             <li class="nav-item">
         <a class="nav-link" href="shop.php">Shop</a>
       </li>	  
+	  
+	      <li class="nav-item">
+        <a class="nav-link" href="logout.php">Logout</a>
+      </li>
+	  
+	  
+	  <li> <?php print_r($_SESSION); ?> </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

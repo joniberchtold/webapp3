@@ -10,7 +10,7 @@
 <form>
 
    <?php
-		session_start();
+		
         // Hier werden die DB verlinkung und die NAvigation eingefügt
         include "navigation.php";
 		include "datenbank.php";
@@ -30,8 +30,8 @@ if(isset($_GET['login'])) {
         
     //Überprüfung des Passworts
     if ($user !== false && password_verify($Passwort, $user['Passwort'])) {
-        $_SESSION['userid'] = $user['id'];
-        die('Login erfolgreich. Weiter zu <a href="shop.php">internen Bereich</a>');
+        $_SESSION['userid'] = $user['UserID'];
+        die('Login erfolgreich. Weiter zu <a href="shop.php">Shop</a>');
     } else {
         $errorMessage = "E-Mail oder Passwort war ungültig<br>";
     }
@@ -42,21 +42,20 @@ if(isset($_GET['login'])) {
 
 ?>
 
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" name="Email class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" name="Passwort class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+ <?php 
+if(isset($errorMessage)) {
+    echo $errorMessage;
+}
+?>
+ 
+<form action="?login=1" method="post">
+E-Mail:<br>
+<input type="email" size="40" maxlength="250" name="Email"><br><br>
+ 
+Dein Passwort:<br>
+<input type="password" size="40"  maxlength="250" name="Passwort"><br>
+ 
+<input type="submit" value="Abschicken">
 <a href="passwordvergessen.php">Password Vergessen</a>
   </body>
 </html>
