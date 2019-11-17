@@ -27,6 +27,10 @@
         <a class="nav-link" href="shop.php">Shop</a>
       </li>	  
 	  
+	              <li class="nav-item">
+        <a class="nav-link" href="add.php">Hinzufügen</a>
+      </li>	  
+	  
 	      <li class="nav-item">
         <a class="nav-link" href="logout.php">Logout</a>
       </li>
