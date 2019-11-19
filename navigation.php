@@ -36,7 +36,6 @@
       </li>
 	  
 	  
-	  <li> <?php print_r($_SESSION); ?> </li>
     </ul>
         <form class="form-inline my-2 my-lg-0" action="resultate.php" method="POST">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchtext">

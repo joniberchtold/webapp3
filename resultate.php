@@ -4,6 +4,10 @@
         include "navigation.php";
         include "datenbank.php";
         
+		if(!isset($_SESSION['userid'])) {
+    die('Bitte zuerst <a href="login.php">einloggen</a>');
+}
+
         $suchstring = $_POST["searchtext"];
         
     ?>

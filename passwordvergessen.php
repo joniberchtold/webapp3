@@ -33,11 +33,11 @@ function random_string() {
 $showForm = true;
  
 if(isset($_GET['send']) ) {
- if(!isset($_POST['Email']) || empty($_POST['Email'])) {
+ if(!isset($_POST['email']) || empty($_POST['email'])) {
  $error = "<b>Bitte eine E-Mail-Adresse eintragen</b>";
  } else {
  $statement = $pdo->prepare("SELECT * FROM benutzer WHERE Email = :Email");
- $result = $statement->execute(array('Email' => $_POST['Email']));
+ $result = $statement->execute(array('Email' => $_POST['email']));
  $user = $statement->fetch(); 
  
  if($user === false) {
@@ -45,14 +45,14 @@ if(isset($_GET['send']) ) {
  } else {
  //Überprüfe, ob der User schon einen Passwortcode hat oder ob dieser abgelaufen ist 
  $passwortcode = random_string();
- $statement = $pdo->prepare("UPDATE benutzer SET passwortcode = :passwortcode, passwortcode_time = NOW() WHERE id = :userid");
- $result = $statement->execute(array('passwortcode' => sha1($passwortcode), 'userid' => $user['id']));
+ $statement = $pdo->prepare("UPDATE benutzer SET passwortcode = :passwortcode, passwortcode_time = CURRENT_TIMESTAMP() WHERE UserID = :userid");
+ $result = $statement->execute(array('passwortcode' => $passwortcode, 'userid' => $user['UserID']));
  
  $empfaenger = $user['Email'];
  $betreff = "Neues Passwort für deinen Account auf www.php-einfach.de"; //Ersetzt hier den Domain-Namen
  $from = "From: Vorname Nachname <absender@domain.de>"; //Ersetzt hier euren Name und E-Mail-Adresse
- $url_passwortcode = 'http://localhost/passwortzuruecksetzen.php?userid='.$user['id'].'&code='.$passwortcode; //Setzt hier eure richtige Domain ein
- $text = 'Hallo '.$user['vorname'].',
+ $url_passwortcode = 'http://localhost/passwortzuruecksetzen.php?userid='.$user['UserID'].'&code='.$passwortcode; //Setzt hier eure richtige Domain ein
+ $text = 'Hallo '.$user['Vorname'].',
 für deinen Account auf www.php-einfach.de wurde nach einem neuen Passwort gefragt. Um ein neues Passwort zu vergeben, rufe innerhalb der nächsten 24 Stunden die folgende Website auf:
 '.$url_passwortcode.'
  

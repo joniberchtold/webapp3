@@ -5,6 +5,10 @@
         include "navigation.php";
         include "datenbank.php";
         
+		if(!isset($_SESSION['userid'])) {
+    die('Bitte zuerst <a href="login.php">einloggen</a>');
+}
+
         $edit_id = $_GET['eid']; 
         
         $sql = "SELECT ID, Name, Artikelnummer, Bild, Beschreibung FROM artikel WHERE id = '$edit_id' LIMIT 1";

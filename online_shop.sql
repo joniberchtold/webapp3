@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 13. Nov 2019 um 15:29
+-- Erstellungszeit: 19. Nov 2019 um 14:09
 -- Server-Version: 10.4.6-MariaDB
 -- PHP-Version: 7.3.9
 
@@ -61,22 +61,17 @@ CREATE TABLE `benutzer` (
   `Hausnummer` int(255) NOT NULL,
   `PLZ` int(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
-  `Telefonnummer` int(255) NOT NULL
+  `Telefonnummer` int(255) NOT NULL,
+  `passwortcode` varchar(255) DEFAULT NULL,
+  `passwortcode_time` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Tabellenstruktur für Tabelle `passwort`
+-- Daten für Tabelle `benutzer`
 --
 
-CREATE TABLE `passwort` (
-  `pwID` int(255) NOT NULL,
-  `UserID` int(255) NOT NULL,
-  `Hash` varchar(255) NOT NULL,
-  `Time` time(6) NOT NULL,
-  `done` int(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `benutzer` (`UserID`, `Benutzername`, `Passwort`, `Vorname`, `Nachname`, `Strasse`, `Hausnummer`, `PLZ`, `Email`, `Telefonnummer`, `passwortcode`, `passwortcode_time`) VALUES
+(1, 'a', '$2y$10$Qh6XBLjz9ZqUV/suGrDj2utypApzpImp1FIiruvwZcfND7FzlRHiS', 'a', 'a', 'a', 0, 0, 'a@a.ch', 0, NULL, NULL);
 
 --
 -- Indizes der exportierten Tabellen
@@ -95,13 +90,6 @@ ALTER TABLE `benutzer`
   ADD PRIMARY KEY (`UserID`);
 
 --
--- Indizes für die Tabelle `passwort`
---
-ALTER TABLE `passwort`
-  ADD PRIMARY KEY (`pwID`),
-  ADD KEY `UserID` (`UserID`);
-
---
 -- AUTO_INCREMENT für exportierte Tabellen
 --
 
@@ -115,23 +103,7 @@ ALTER TABLE `artikel`
 -- AUTO_INCREMENT für Tabelle `benutzer`
 --
 ALTER TABLE `benutzer`
-  MODIFY `UserID` int(255) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT für Tabelle `passwort`
---
-ALTER TABLE `passwort`
-  MODIFY `pwID` int(255) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints der exportierten Tabellen
---
-
---
--- Constraints der Tabelle `passwort`
---
-ALTER TABLE `passwort`
-  ADD CONSTRAINT `passwort_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `benutzer` (`UserID`);
+  MODIFY `UserID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

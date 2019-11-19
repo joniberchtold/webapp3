@@ -5,6 +5,10 @@
 	include "datenbank.php";
 	include "navigation.php";
 	
+	if(!isset($_SESSION['userid'])) {
+    die('Bitte zuerst <a href="login.php">einloggen</a>');
+}
+	
     ?>
   <body>
     <form action="add_db_save.php" method="POST" enctype="multipart/form-data">
