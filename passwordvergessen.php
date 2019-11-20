@@ -49,7 +49,8 @@ if(isset($_GET['send']) ) {
  $result = $statement->execute(array('passwortcode' => $passwortcode, 'userid' => $user['UserID']));
  
  $empfaenger = $user['Email'];
- $betreff = "Neues Passwort für deinen Account auf www.php-einfach.de"; //Ersetzt hier den Domain-Namen
+ $betreff = "Neues Passwort für deinen Account
+ "; //Ersetzt hier den Domain-Namen
  $from = "From: Vorname Nachname <absender@domain.de>"; //Ersetzt hier euren Name und E-Mail-Adresse
  $url_passwortcode = 'http://localhost/passwortzuruecksetzen.php?userid='.$user['UserID'].'&code='.$passwortcode; //Setzt hier eure richtige Domain ein
  $text = 'Hallo '.$user['Vorname'].',
