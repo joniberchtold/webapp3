@@ -53,13 +53,13 @@ if(isset($_GET['send']) ) {
  $from = "From: Vorname Nachname <absender@domain.de>"; //Ersetzt hier euren Name und E-Mail-Adresse
  $url_passwortcode = 'http://localhost/passwortzuruecksetzen.php?userid='.$user['UserID'].'&code='.$passwortcode; //Setzt hier eure richtige Domain ein
  $text = 'Hallo '.$user['Vorname'].',
-für deinen Account auf www.php-einfach.de wurde nach einem neuen Passwort gefragt. Um ein neues Passwort zu vergeben, rufe innerhalb der nächsten 24 Stunden die folgende Website auf:
+für deinen Account auf dem Shop wurde nach einem neuen Passwort gefragt. Um ein neues Passwort zu vergeben, rufe innerhalb der nächsten 24 Stunden die folgende Website auf:
 '.$url_passwortcode.'
  
 Sollte dir dein Passwort wieder eingefallen sein oder hast du dies nicht angefordert, so bitte ignoriere diese E-Mail.
  
 Viele Grüße,
-dein PHP-Einfach.de-Team';
+Valentin und Jonas';
  
  mail($empfaenger, $betreff, $text, $from);
  
