@@ -1,9 +1,5 @@
 <?php
 
-if(!isset($_SESSION['userid'])) {
-    die('Bitte zuerst <a href="login.php">einloggen</a>');
-}
-
     $edit_id = $_GET['eid']; 
     
     $produkt_name = $_POST["inputprodukt"];

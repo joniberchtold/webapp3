@@ -1,7 +1,4 @@
 <?php
-if(!isset($_SESSION['userid'])) {
-    die('Bitte zuerst <a href="login.php">einloggen</a>');
-}
 
     $produkt_name = $_POST["inputprodukt"];
     $produkt_beschreibung = $_POST["inputbeschreibung"];
