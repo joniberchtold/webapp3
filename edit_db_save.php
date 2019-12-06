@@ -35,5 +35,5 @@
     $sql = "UPDATE artikel SET Beschreibung = '$produkt_beschreibung' where ID = '$edit_id'";
     $pdo->query($sql);
     
-    header("location: shop.php");   
+    header("location: confirm_edit.php");   
 ?>

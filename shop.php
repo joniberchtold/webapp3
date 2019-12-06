@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Titel</title>
+    <link rel="stylesheet" href="css/style.css">
+	<title>Shop</title>
   </head>
   <body>
   
@@ -45,7 +46,7 @@ echo "Hallo User: ".$userid;
             <div id="produkt_bild"><img src="bilder/<?php echo $produkt_bild; ?>" /></div>
 			<div id="produkt_nummer"><?php echo $produkt_artikelnummer; ?></div>
             <div id="produkt_beschreibung"><?php echo $produkt_beschreibung; ?></div>
-            <div id="produkt_bearbeitung"><a href="edit.php?eid=<?php echo $produkt_id; ?>">Bearbeiten</a> - <a href="del.php?did=<?php echo $produkt_id; ?>">Löschen</a></div>
+            <div id="produkt_bearbeitung"><form method="post" action='edit.php'> <input name="produkt_nr" type="hidden" value="<?php echo $produkt_id; ?>"></input><button type="submit">Bearbeiten</button></form><form method="post" action='del.php'><input name="produkt_nr" type="hidden" value="<?php echo $produkt_id; ?>"></input><button type="submit">Löschen</button></form></div>
             </div>
         <?php
         }

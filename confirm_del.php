@@ -8,20 +8,14 @@
 	<title>Shop</title>
   </head>
   <body>
-  
    <?php
-
         // Hier werden die DB verlinkung und die NAvigation eingefügt
         include "navigation.php";
 		include "datenbank.php";
        
 
 ?>
+<p>Der Artikel wurde erfolgreich gelöscht. <a href="shop.php">Weiter zum Shop</a></p>
 
-
-<?php
-
-session_destroy();
- 
-echo "Logout erfolgreich. <br>" . "Weiter zur <a href='index.php'>Startseite</a>" ;
-?>
+</body>
+</html>

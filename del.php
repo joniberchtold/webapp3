@@ -1,11 +1,11 @@
 <?php
-    $del_id = $_GET['did']; 
+    $del_id = $_POST['produkt_nr']; 
     
     include "datenbank.php";
     
     $sql = "DELETE FROM artikel where id = " . $del_id;
     $pdo->query($sql);
     
-    header("location: shop.php");    
+    header("location: confirm_del.php");    
 ?>
 

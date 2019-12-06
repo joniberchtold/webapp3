@@ -1,6 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+	<title>Shop</title>
+  </head>
+  <body>
     <?php
         include "navigation.php";
         include "datenbank.php";
@@ -9,7 +16,7 @@
     die('Bitte zuerst <a href="login.php">einloggen</a>');
 }
 
-        $edit_id = $_GET['eid']; 
+        $edit_id = $_POST['produkt_nr']; 
         
         $sql = "SELECT ID, Name, Artikelnummer, Bild, Beschreibung FROM artikel WHERE id = '$edit_id' LIMIT 1";
          foreach ($pdo->query($sql) as $row) {
@@ -21,7 +28,6 @@
         }
         
     ?>
-  <body>
     <form action="edit_db_save.php?eid=<?php echo $produkt_id;?>" method="POST" enctype="multipart/form-data">
         <div class="form-row">
             <div class="form-group col-md-6">

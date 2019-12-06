@@ -18,5 +18,5 @@
     $sql = "INSERT INTO artikel(ID, Name, Artikelnummer, Bild, Beschreibung) VALUES ('', '$produkt_name', '$produkt_artikelnummer', '$produkt_bild', '$produkt_beschreibung')";
     $pdo->query($sql);
     
-    header("location: shop.php");   
+    header("location: add_confirm.php");   
 ?>

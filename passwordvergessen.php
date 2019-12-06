@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Titel</title>
+    <link rel="stylesheet" href="css/style.css">
+	<title>Shop</title>
   </head>
   <body>
  <?php 
@@ -52,7 +53,7 @@ if(isset($_GET['send']) ) {
  $betreff = "Neues Passwort für deinen Account
  "; //Ersetzt hier den Domain-Namen
  $from = "From: Vorname Nachname <absender@domain.de>"; //Ersetzt hier euren Name und E-Mail-Adresse
- $url_passwortcode = 'http://localhost/passwortzuruecksetzen.php?userid='.$user['UserID'].'&code='.$passwortcode; //Setzt hier eure richtige Domain ein
+ $url_passwortcode = 'http://localhost/~demo/webapp3/passwortzuruecksetzen.php?userid='.$user['UserID'].'&code='.$passwortcode; //Setzt hier eure richtige Domain ein
  $text = 'Hallo '.$user['Vorname'].',
 für deinen Account auf dem Shop wurde nach einem neuen Passwort gefragt. Um ein neues Passwort zu vergeben, rufe innerhalb der nächsten 24 Stunden die folgende Website auf:
 '.$url_passwortcode.'
