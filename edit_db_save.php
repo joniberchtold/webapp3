@@ -1,5 +1,5 @@
 <?php
-
+	//Hier wird das Edit-Formular ausgelesen
     $edit_id = $_GET['eid']; 
     
     $produkt_name = $_POST["inputprodukt"];
@@ -17,9 +17,10 @@
     }
     
 
-    
+	//Hier wird eine Verbindung mit der DB hergestellt
     include "datenbank.php";
     
+	//Mittels SQL werden die Daten in der DB aktualisiert
     if(strlen($produktbild) > 5) {
             $sql = "UPDATE artikel SET Bild = '$produkt_bild' where ID = '$edit_id'";
             $pdo->query($sql);
@@ -35,5 +36,6 @@
     $sql = "UPDATE artikel SET Beschreibung = '$produkt_beschreibung' where ID = '$edit_id'";
     $pdo->query($sql);
     
+	//Weiterleitung zur Confirm Nachricht
     header("location: confirm_edit.php");   
 ?>

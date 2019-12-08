@@ -9,13 +9,17 @@
   </head>
   <body>
     <?php
+		// Hier werden die DB verlinkung und die Navigation eingefügt
+			// navigation.php ist für Navigation
+			// datenbank.php ist für die Verbindung zu Datenbank 
         include "navigation.php";
         include "datenbank.php";
         
+		// Hier wird geprüft ob der ein User angemeldet ist, falls nicht kriegt er eine Rückmeldung für die Anmeldung
 		if(!isset($_SESSION['userid'])) {
-    die('Bitte zuerst <a href="login.php">einloggen</a>');
-}
-
+			die('Bitte zuerst <a href="login.php">einloggen</a>');
+		}
+		//Hier werden die Daten aus der Datenbank gelesen
         $edit_id = $_POST['produkt_nr']; 
         
         $sql = "SELECT ID, Name, Artikelnummer, Bild, Beschreibung FROM artikel WHERE id = '$edit_id' LIMIT 1";
@@ -28,6 +32,9 @@
         }
         
     ?>
+	<!-- Hier wird das Formular erstellt welches für die Artikelbearbeitung gebraucht wird -->
+	<!-- Das Formular wird mit den vorhandenen Daten mittels echo befüllt -->
+	
     <form action="edit_db_save.php?eid=<?php echo $produkt_id;?>" method="POST" enctype="multipart/form-data">
         <div class="form-row">
             <div class="form-group col-md-6">

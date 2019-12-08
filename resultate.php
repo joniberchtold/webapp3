@@ -9,19 +9,27 @@
   </head>
   <body>
     <?php
+	// Hier werden die DB verlinkung und die Navigation eingefügt
+			// navigation.php ist für Navigation
+			// datenbank.php ist für die Verbindung zu Datenbank
         include "navigation.php";
         include "datenbank.php";
         
+	// Hier wird geprüft ob der ein User angemeldet ist, falls nicht kriegt er eine Rückmeldung für die Anmeldung	
 		if(!isset($_SESSION['userid'])) {
-    die('Bitte zuerst <a href="login.php">einloggen</a>');
-}
-
+			die('Bitte zuerst <a href="login.php">einloggen</a>');
+		}
+	
         $suchstring = $_POST["searchtext"];
         
     ?>
     
 
-        <?php
+    <?php
+	
+	//Hier wir die Suchfunktion erstellt
+	//Kleiner als 3 Zeichen ist nicht erlaubt
+	//Falls korrekt werden zutreffende Artikel angezeigt
             if (strlen($suchstring) < 3)
             {
                 echo "<div id='produkt'>Suchstring ist zu kurz</div>";
@@ -39,7 +47,7 @@
                 $produkt_bild = $row['Bild'];
                 $produkt_beschreibung = $row['Beschreibung'];
 				$count_var++;
-        ?>
+    ?>
             <div id="produkt">
             <div id="produkt_titel"><h1><?php echo $produkt_name; ?></h1></div>
             <div id="produkt_bild"><img src="bilder/<?php echo $produkt_bild; ?>" /></div>
@@ -47,17 +55,20 @@
             <div id="produkt_beschreibung"><?php echo $produkt_beschreibung; ?></div>
             
 
-        <?php
+    <?php
         }
-        ?>
-        <?php
+    ?>
+	
+    <?php
+	
+	//Falls keine Resultate vorhanden sind wird dieses ausgeführt
             }
             if ($count_var == 0)
             {
                 echo "<div id='produkt'>Keine Resultate gefunden</div>";
             }
         
-        ?>
+    ?>
 
     </body>
 </html>
