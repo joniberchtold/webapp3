@@ -8,34 +8,48 @@
 	<title>Shop</title>
   </head>
   <body>
+  
     <?php
-	include "datenbank.php";
-	include "navigation.php";
+		// Hier werden die DB verlinkung und die Navigation eingefügt
+			// navigation.php ist für Navigation
+			// datenbank.php ist für die Verbindung zu Datenbank
+			
+		include "datenbank.php";
+		include "navigation.php";
 	
-	if(!isset($_SESSION['userid'])) {
-    die('Bitte zuerst <a href="login.php">einloggen</a>');
-}
+		// Hier wird geprüft ob der ein User angemeldet ist, falls nicht kriegt er eine Rückmeldung für die Anmeldung
+		
+		if(!isset($_SESSION['userid'])) {
+			die('Bitte zuerst <a href="login.php">einloggen</a>');
+		}
 	
     ?>
+	
+	<!-- Hier wird das Formular erstellt welches für die Artikelerfassung gebraucht wird -->
+	<!-- Alles reines HTML -->
+		
     <form action="add_db_save.php" method="POST" enctype="multipart/form-data">
         <div class="form-row">
             <div class="form-group col-md-6">
-            <label for="inputEmail4">Name</label>
-            <input type="text" class="form-control" name="inputprodukt" placeholder="Produkt">
+				<label for="inputEmail4">Name</label>
+				<input type="text" class="form-control" name="inputprodukt" placeholder="Produkt">
             </div>
         </div>
-		        <div class="form-row">
+		
+		<div class="form-row">
             <div class="form-group col-md-6">
-            <label for="inputEmail4">Artikelnummer</label>
-            <input type="text" class="form-control" name="inputnummer" placeholder="Artikelnummer">
+				<label for="inputEmail4">Artikelnummer</label>
+				<input type="text" class="form-control" name="inputnummer" placeholder="Artikelnummer">
             </div>
         </div>
-        <div class="form-row">
+		
+        <div class="form-row"
             <div class="form-group col-md-6">
-            <label for="inputPassword4">Beschreibung</label>
-            <input type="text" class="form-control" name="inputbeschreibung" placeholder="Beschreibung">
+				<label for="inputPassword4">Beschreibung</label>
+				<input type="text" class="form-control" name="inputbeschreibung" placeholder="Beschreibung">
             </div>
         </div>
+		
         <div class="form-row">
             <div class="form-group">
                 <label for="file1">Bild</label>
@@ -43,8 +57,9 @@
             </div>
         </br>
         </div>
-
+		
         <button type="submit" class="btn btn-primary">Fertig</button>
+		
     </form>
   </body>
 </html>

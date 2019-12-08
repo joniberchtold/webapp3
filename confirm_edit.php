@@ -7,15 +7,18 @@
     <link rel="stylesheet" href="css/style.css">
 	<title>Shop</title>
   </head>
-  <body>
-   <?php
-        // Hier werden die DB verlinkung und die NAvigation eingefügt
-        include "navigation.php";
-		include "datenbank.php";
-       
+	<body>
+		<?php
+			// Hier werden die DB verlinkung und die Navigation eingefügt
+					// navigation.php ist für Navigation
+					// datenbank.php ist für die Verbindung zu Datenbank
+			include "navigation.php";
+			include "datenbank.php";
+      
+		?>
+		
+		<!-- Ausgabe mit Verlinkung weiter zum Shop -->
+		<p>Der Artikel wurde erfolgreich geändert. <a href="shop.php">Weiter zum Shop</a></p>
 
-?>
-<p>Der Artikel wurde erfolgreich geändert. <a href="shop.php">Weiter zum Shop</a></p>
-
-</body>
+	</body>
 </html>
