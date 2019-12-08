@@ -12,19 +12,23 @@
 
    <?php
 		
-        // Hier werden die DB verlinkung und die NAvigation eingefügt
-        include "navigation.php";
+        // Hier werden die DB verlinkung und die Navigation eingefügt
+		// navigation.php ist für Navigation
+		// datenbank.php ist für die Verbindung zu Datenbank 
+		include "navigation.php";
 		include "datenbank.php";
         
-    if(isset($_GET['login'])) {
-        $Email = $_POST['Email'];
-        $Passwort = $_POST['Passwort'];
+		// Der untenstehende Code ist für das Login 
+		// Es wird die Mail und das Passwort abgegleicht 
+		if(isset($_GET['login'])) {
+			$Email = $_POST['Email'];
+			$Passwort = $_POST['Passwort'];
         
         $statement = $pdo->prepare("SELECT * FROM benutzer WHERE Email = :Email");
         $result = $statement->execute(array('Email' => $Email));
         $user = $statement->fetch();
             
-        //Überprüfung des Passworts
+        //Überprüfung des Passworts, falls Passwort nicht übereinstimmt, wird eine Meldung ausgegeben
         if ($user !== false && password_verify($Passwort, $user['Passwort'])) {
             $_SESSION['userid'] = $user['UserID'];
             die('Login erfolgreich.<br>Weiter zu <a href="shop.php">Shop</a>');
@@ -44,6 +48,7 @@ if(isset($errorMessage)) {
 }
 ?>
  
+ <!-- Formular für das Login -->
 <form action="?login=1" method="post">
 E-Mail:<br>
 <input type="email" size="40" maxlength="250" name="Email"><br><br>
@@ -51,7 +56,10 @@ E-Mail:<br>
 Dein Passwort:<br>
 <input type="password" size="40"  maxlength="250" name="Passwort"><br>
  
+  <!-- Submit Button -->
 <input type="submit" value="Abschicken">
+
+ <!-- Falls man das Passwort vergessen hat, kann man mit diesem Link zum Passwort vergessen Formular gelabgen -->
 <a href="passwordvergessen.php">Password Vergessen</a>
 
 
