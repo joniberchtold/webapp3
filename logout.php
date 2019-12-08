@@ -11,7 +11,9 @@
   
    <?php
 
-        // Hier werden die DB verlinkung und die NAvigation eingefügt
+        // Hier werden die DB verlinkung und die Navigation eingefügt
+		// navigation.php ist für Navigation
+		// datenbank.php ist für die Verbindung zu Datenbank 
         include "navigation.php";
 		include "datenbank.php";
        
@@ -21,7 +23,10 @@
 
 <?php
 
-session_destroy();
+		// Hier wird die Session beendet für das Logut
+		session_destroy();
  
-echo "Logout erfolgreich. <br>" . "Weiter zur <a href='index.php'>Startseite</a>" ;
+		// Meldung für die Bestätigung des Logouts
+		// Link zur Startseite 
+		echo "Logout erfolgreich. <br>" . "Weiter zur <a href='index.php'>Startseite</a>" ;
 ?>
