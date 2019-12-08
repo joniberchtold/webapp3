@@ -10,7 +10,9 @@
   <body>
   
    <?php
-        // Hier werden die DB verlinkung und die NAvigation eingefügt
+        // Hier werden die DB verlinkung und die Navigation eingefügt
+		// navigation.php ist für Navigation
+		// datenbank.php ist für die Verbindung zu Datenbank 
         include "navigation.php";
 		include "datenbank.php";
        
@@ -20,7 +22,8 @@
 
 
 <?php
-        $sql = "SELECT ID, Name, Artikelnummer, Bild, Beschreibung FROM artikel ORDER BY rand() LIMIT 1";
+       // Hier werden 2 zufällige Artikel angezeigt 
+	   $sql = "SELECT ID, Name, Artikelnummer, Bild, Beschreibung FROM artikel ORDER BY rand() LIMIT 2";
         foreach ($pdo->query($sql) as $row) {
                 $produkt_id = $row['ID'];
 				$produkt_name = $row['Name'];
@@ -28,7 +31,9 @@
                 $produkt_bild = $row['Bild'];
                 $produkt_beschreibung = $row['Beschreibung'];
         ?>
-            <div id="produkt">
+            
+			<!-- Anzeige von Produkten -->
+			<div id="produkt">
             <div id="produkt_titel"><h1><?php echo $produkt_name; ?></h1></div>
             <div id="produkt_bild"><img src="bilder/<?php echo $produkt_bild; ?>" /></div>
 			<div id="produkt_nummer"><?php echo $produkt_artikelnummer; ?></div>
